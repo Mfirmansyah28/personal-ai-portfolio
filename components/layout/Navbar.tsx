@@ -10,7 +10,8 @@ export default function Navbar () {
                         href="/"
                         className="text-x1 font-bold tracking-tight"
                     >
-                        MFirmansyah
+                        M.Firmansyah
+                        
                     </Link>
 
                     <div className="hidden gap-8 md:flex">
