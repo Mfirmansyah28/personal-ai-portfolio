@@ -8,7 +8,7 @@ export default function HomePage() {
 
         <main className="min-h-screen">
             <div className="flex h-[80vh] items-center justify-center">
-                <h1 className="text-5x1 font-bold">
+                <h1 className="text-5xl font-bold">
                     Wecome To My AI Portfolio
                 </h1>
             </div>

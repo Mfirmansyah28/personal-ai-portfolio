@@ -8,7 +8,7 @@ export default function Navbar () {
                 <nav className="flex h-16 items-center justify-between">
                     <Link
                         href="/"
-                        className="text-x1 font-bold tracking-tight"
+                        className="text-xl font-bold tracking-tight"
                     >
                         M.Firmansyah
                         
