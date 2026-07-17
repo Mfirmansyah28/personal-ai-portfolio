@@ -1,20 +1,28 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Skills from "@/components/sections/Skills";
+import Timeline from "@/components/sections/Timeline";
+import FeaturedProjects from "@/components/sections/FeaturedProjects";
+import Projects from "@/components/sections/Projects";
+import Assistant from "@/components/sections/Assistant";
 export default function HomePage() {
     return (
         <>
-        <Navbar />
+            <Navbar />
 
-        <main className="min-h-screen">
-            <div className="flex h-[80vh] items-center justify-center">
-                <h1 className="text-5xl font-bold">
-                    Wecome To My AI Portfolio
-                </h1>
-            </div>
-        </main>
+            <main>
+                <Hero />
+                <About />
+                <Skills />
+                <Timeline />
+                <FeaturedProjects />
+                <Projects />
+                <Assistant />
+            </main>
 
-        <Footer />
+            <Footer />
         </>
     );
 }
