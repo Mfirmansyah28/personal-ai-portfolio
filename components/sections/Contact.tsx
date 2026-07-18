@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import profile from "@/data/profile";
 
@@ -22,38 +24,34 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+
+  email: z.string().email("Please enter a valid email"),
+
+  subject: z.string().min(5, "Subject must be at least 5 characters"),
+
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactForm = z.infer<typeof formSchema>;
+
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactForm>({
+    resolver: zodResolver(formSchema),
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const onSubmit = (data: ContactForm) => {
+    console.log(data);
 
-  const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
+    alert("Message sent successfully!");
 
-    console.log(form);
-
-    alert("Message submitted successfully! (Dummy)");
-
-    setForm({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    reset();
   };
 
   return (
@@ -64,8 +62,7 @@ export default function Contact() {
       />
 
       <div className="grid gap-10 lg:grid-cols-2">
-
-        {/* Contact Information */}
+        {/* Left */}
 
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -74,37 +71,23 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <Card>
-
             <CardContent className="space-y-8 p-8">
-
               <div>
-
-                <h3 className="text-3xl font-bold">
-                  Get In Touch
-                </h3>
+                <h3 className="text-3xl font-bold">Get In Touch</h3>
 
                 <p className="mt-4 leading-8 text-muted-foreground">
-                  Whether you want to discuss AI Chatbots,
-                  AI Agents, Enterprise RAG Systems,
-                  or collaboration opportunities,
-                  feel free to contact me.
+                  Im always open to discussing AI Engineering, LLM Applications,
+                  Enterprise RAG, AI Agent Systems, or collaboration
+                  opportunities.
                 </p>
-
               </div>
 
               <div className="space-y-6">
-
-                {/* Email */}
-
                 <div className="flex items-center gap-4">
-
                   <FaEnvelope className="text-xl text-primary" />
 
                   <div>
-
-                    <h4 className="font-semibold">
-                      Email
-                    </h4>
+                    <h4 className="font-semibold">Email</h4>
 
                     <a
                       href={`mailto:${profile.email}`}
@@ -112,42 +95,24 @@ export default function Contact() {
                     >
                       {profile.email}
                     </a>
-
                   </div>
-
                 </div>
 
-                {/* Location */}
-
                 <div className="flex items-center gap-4">
-
                   <FaMapMarkerAlt className="text-xl text-primary" />
 
                   <div>
+                    <h4 className="font-semibold">Location</h4>
 
-                    <h4 className="font-semibold">
-                      Location
-                    </h4>
-
-                    <p className="text-muted-foreground">
-                      {profile.location}
-                    </p>
-
+                    <p className="text-muted-foreground">{profile.location}</p>
                   </div>
-
                 </div>
 
-                {/* Github */}
-
                 <div className="flex items-center gap-4">
-
                   <FaGithub className="text-xl text-primary" />
 
                   <div>
-
-                    <h4 className="font-semibold">
-                      Github
-                    </h4>
+                    <h4 className="font-semibold">GitHub</h4>
 
                     <a
                       href={profile.github}
@@ -157,22 +122,14 @@ export default function Contact() {
                     >
                       {profile.github}
                     </a>
-
                   </div>
-
                 </div>
 
-                {/* LinkedIn */}
-
                 <div className="flex items-center gap-4">
-
                   <FaLinkedin className="text-xl text-primary" />
 
                   <div>
-
-                    <h4 className="font-semibold">
-                      LinkedIn
-                    </h4>
+                    <h4 className="font-semibold">LinkedIn</h4>
 
                     <a
                       href={profile.linkedin}
@@ -182,39 +139,26 @@ export default function Contact() {
                     >
                       {profile.linkedin}
                     </a>
-
                   </div>
-
                 </div>
 
-                {/* Availability */}
-
                 <div className="flex items-center gap-4">
-
                   <FaBriefcase className="text-xl text-primary" />
 
                   <div>
-
-                    <h4 className="font-semibold">
-                      Availability
-                    </h4>
+                    <h4 className="font-semibold">Availability</h4>
 
                     <p className="text-muted-foreground">
                       {profile.availability}
                     </p>
-
                   </div>
-
                 </div>
-
               </div>
-
             </CardContent>
-
           </Card>
         </motion.div>
 
-        {/* Contact Form */}
+        {/* Right */}
 
         <motion.div
           initial={{ opacity: 0, x: 30 }}
@@ -223,59 +167,95 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <Card>
-
             <CardContent className="p-8">
-
               <form
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit(onSubmit)}
                 className="space-y-6"
-              >
+              ></form>
+              {/* Name */}
+
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-medium">
+                  Name
+                </label>
 
                 <Input
-                  name="name"
+                  id="name"
                   placeholder="Your Name"
-                  value={form.name}
-                  onChange={handleChange}
+                  {...register("name")}
                 />
 
+                {errors.name && (
+                  <p className="text-sm text-red-500">{errors.name.message}</p>
+                )}
+              </div>
+
+              {/* Email */}
+
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium">
+                  Email
+                </label>
+
                 <Input
+                  id="email"
                   type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={form.email}
-                  onChange={handleChange}
+                  placeholder="your@email.com"
+                  {...register("email")}
                 />
 
+                {errors.email && (
+                  <p className="text-sm text-red-500">{errors.email.message}</p>
+                )}
+              </div>
+
+              {/* Subject */}
+
+              <div className="space-y-2">
+                <label htmlFor="subject" className="text-sm font-medium">
+                  Subject
+                </label>
+
                 <Input
-                  name="subject"
-                  placeholder="Subject"
-                  value={form.subject}
-                  onChange={handleChange}
+                  id="subject"
+                  placeholder="AI Chatbot Development"
+                  {...register("subject")}
                 />
+
+                {errors.subject && (
+                  <p className="text-sm text-red-500">
+                    {errors.subject.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Message */}
+
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium">
+                  Message
+                </label>
 
                 <Textarea
-                  rows={6}
-                  name="message"
-                  placeholder="Write your message..."
-                  value={form.message}
-                  onChange={handleChange}
+                  id="message"
+                  rows={7}
+                  placeholder="Tell me about your project..."
+                  {...register("message")}
                 />
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                >
-                  <FaPaperPlane className="mr-2" />
-                  Send Message
-                </Button>
-
-              </form>
-
+                {errors.message && (
+                  <p className="text-sm text-red-500">
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
+              <Button type="submit" className="w-full">
+                <FaPaperPlane className="mr-2 h-4 w-4" />
+                Send Message
+              </Button>
             </CardContent>
-
           </Card>
         </motion.div>
-
       </div>
     </SectionContainer>
   );
