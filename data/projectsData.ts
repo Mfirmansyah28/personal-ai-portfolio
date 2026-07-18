@@ -2,6 +2,7 @@ export interface Project {
     id: number;
     title: string;
     slug: string;
+    category: string;
     description: string;
     image: string;
     technologies: string[];
@@ -16,6 +17,7 @@ const projectsData: Project [] = [
         id: 1,
         title: "StyleUp AI Customer Service Chatbot",
         slug: "styleup-chatbot",
+        category: "Chatbot",
         description:
             "AI-powered customer service chatbot built with Streamlit and OpenRouter. It provides intelligent product recommendations, answers customer questions, manages conversation history, and follows a customized customer service persona.",
         image: "/projects/chatbot.png",
@@ -35,6 +37,7 @@ const projectsData: Project [] = [
         id: 2,
         title: "AI Agent App",
         slug: "ai-agent-app",
+        category: "AI Agent",
         description:
             "AI Agent application capable of executing multi-step reasoning workflows, integrating LLMs, and automating intelligent tasks through modular agent architecture.",
         image: "/projects/ai-agent.png",
@@ -54,6 +57,7 @@ const projectsData: Project [] = [
         id: 3,
         title: "Enterprise RAG Agent",
         slug: "enterprise-rag-agent",
+        category: "RAG",
         description:
             "Enterprise Retrieval-Augmented Generation platform designed for intelligent document retrieval and currently evolving into a Multi-Agent System for enterprise knowledge management.",
         image: "/projects/enterprise-rag.png",
