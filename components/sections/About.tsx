@@ -78,7 +78,7 @@ export default function About () {
                         </h3>
 
                         <p className="mt-4 text-muted-foreground">
-                            Bachelor of Inormatics Engineering.
+                            Bachelor of Informatics Engineering.
                         </p>
                     </div>
 
