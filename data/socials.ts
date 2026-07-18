@@ -1,13 +1,10 @@
-import {
-    FaGithub,
-    FaLinkedin,
-    FaEnvelope,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope} from "react-icons/fa";
+import profile from "./profile";
 
 const socials = [
     {
         name: "Github",
-        href: "https://github.com/Mfirmansyah28",
+        href: profile.github,
         icon: FaGithub,
     },
 
@@ -19,7 +16,7 @@ const socials = [
 
     {
         name: "Email",
-        href: "#",
+        href: `mailto:${profile.email}`,
         icon: FaEnvelope,
     },
 ];

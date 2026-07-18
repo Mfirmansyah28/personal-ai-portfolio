@@ -6,6 +6,8 @@ const profile = {
     location: "Indonesia",
     email: "muhammadfirmansyah401@gmail.com",
     github: "https://github.com/Mfirmansyah28",
+    linkedin: "#",
+    availability: "Available for Freelance & Full-Time",
     resume: "",
     avatar: "",
 };
