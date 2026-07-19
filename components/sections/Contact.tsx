@@ -41,18 +41,38 @@ export default function Contact() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ContactForm>({
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: ContactForm) => {
-    console.log(data);
+  const onSubmit = async (data: ContactForm) => {
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message);
+    }
 
     alert("Message sent successfully!");
 
     reset();
-  };
+  } catch (error) {
+    alert(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong."
+    );
+  }
+};
 
   return (
     <SectionContainer id="contact">
@@ -249,9 +269,16 @@ export default function Contact() {
                   </p>
                 )}
               </div>
-              <Button type="submit" className="w-full">
+              <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isSubmitting}
+              >
                 <FaPaperPlane className="mr-2 h-4 w-4" />
-                Send Message
+                  { isSubmitting
+                    ? "Sending..."
+                    : "Send Message"
+                  }
               </Button>
             </CardContent>
           </Card>
