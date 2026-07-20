@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 
 import profile from "@/data/profile";
 
@@ -62,11 +63,11 @@ export default function Contact() {
       throw new Error(result.message);
     }
 
-    alert("Message sent successfully!");
+    toast.success("Message sent successfully!");
 
     reset();
   } catch (error) {
-    alert(
+    toast.error(
       error instanceof Error
         ? error.message
         : "Something went wrong."
@@ -191,7 +192,7 @@ export default function Contact() {
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="space-y-6"
-              ></form>
+              >
               {/* Name */}
 
               <div className="space-y-2">
@@ -280,6 +281,7 @@ export default function Contact() {
                     : "Send Message"
                   }
               </Button>
+            </form>
             </CardContent>
           </Card>
         </motion.div>
