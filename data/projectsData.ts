@@ -4,6 +4,7 @@ export interface Project {
     slug: string;
     category: string;
     description: string;
+    longDescription: string,
     image: string;
     technologies: string[];
     github: string;
@@ -18,7 +19,8 @@ const projectsData: Project [] = [
         title: "StyleUp AI Customer Service Chatbot",
         slug: "styleup-chatbot",
         category: "Chatbot",
-        description:
+        description: "AI Costumer Service Chatbot",
+        longDescription:
             "AI-powered customer service chatbot built with Streamlit and OpenRouter. It provides intelligent product recommendations, answers customer questions, manages conversation history, and follows a customized customer service persona.",
         image: "/projects/chatbot.png",
         technologies: [
@@ -38,8 +40,9 @@ const projectsData: Project [] = [
         title: "AI Agent App",
         slug: "ai-agent-app",
         category: "AI Agent",
-        description:
-            "AI Agent application capable of executing multi-step reasoning workflows, integrating LLMs, and automating intelligent tasks through modular agent architecture.",
+        description: "AI Agent App",
+        longDescription:
+            "AI Agent App is an intelligent application capable of multi-step reasoning, task planning, and workflow automation using Large Language Models. The project is designed with a modular architecture that enables future expansion into multi-agent collaboration and enterprise automation.",
         image: "/projects/ai-agent.png",
         technologies: [
             "Python",
@@ -58,7 +61,8 @@ const projectsData: Project [] = [
         title: "Enterprise RAG Agent",
         slug: "enterprise-rag-agent",
         category: "RAG",
-        description:
+        description: "Enterprise RAG Agent",
+        longDescription:
             "Enterprise Retrieval-Augmented Generation platform designed for intelligent document retrieval and currently evolving into a Multi-Agent System for enterprise knowledge management.",
         image: "/projects/enterprise-rag.png",
         technologies: [
