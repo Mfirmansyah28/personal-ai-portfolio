@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+
 import "./globals.css";
 
-import { ThemeProvider }  from "@/components/providers/ThemeProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 
-export const metadaata: Metadata = {
-  metadataBase: new URL ("https://your-domain.vercel.app"),
+export const metadata: Metadata = {
+  metadataBase: new URL("https://your-domain.vercel.app"),
+
   title: {
     default: "M. Firmansyah | AI Engineer",
     template: "%s | M. Firmansyah",
   },
 
-  description: "AI Engineer specializing in AI Chatbots, AI Agents, Enterprise Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), FastAPI, LangChain, and Next.js.",
+  description:
+    "AI Engineer specializing in AI Chatbots, AI Agents, Enterprise Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), FastAPI, LangChain, Python, TypeScript, and Next.js.",
 
   keywords: [
     "AI Engineer",
@@ -38,7 +42,8 @@ export const metadaata: Metadata = {
       name: "M. Firmansyah",
     },
   ],
-   creator: "M. Firmansyah",
+
+  creator: "M. Firmansyah",
 
   publisher: "M. Firmansyah",
 
@@ -77,18 +82,69 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+
+    name: "M. Firmansyah",
+
+    jobTitle: "AI Engineer",
+
+    description:
+      "AI Engineer specializing in AI Chatbots, AI Agents, Enterprise RAG Systems, Large Language Models (LLMs), FastAPI, LangChain, Python, TypeScript, and Next.js.",
+
+    url: "https://your-domain.vercel.app",
+
+    image: "https://your-domain.vercel.app/avatar.jpg",
+
+    email: "mailto:muhammadfirmansyah401@gmail.com",
+
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "Indonesia",
+    },
+
+    sameAs: [
+      "https://github.com/Mfirmansyah28",
+      "https://linkedin.com/in/your-linkedin",
+    ],
+
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Large Language Models",
+      "AI Chatbot",
+      "AI Agent",
+      "Enterprise RAG",
+      "LangChain",
+      "FastAPI",
+      "Python",
+      "Next.js",
+      "TypeScript",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <Script
+          id="person-jsonld"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd),
+          }}
+        />
+
         <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem
-        disableTransitionOnChange
-      >
-        {children}
-        <Toaster richColors position="top-right" />
-      </ThemeProvider>
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+
+          <Toaster richColors position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
   );
