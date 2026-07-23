@@ -44,9 +44,7 @@ export const metadata: Metadata = {
   ],
 
   creator: "M. Firmansyah",
-
   publisher: "M. Firmansyah",
-
   robots: {
     index: true,
     follow: true,
@@ -54,24 +52,17 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "M. Firmansyah | AI Engineer",
-
     description:
       "Building AI Chatbots, AI Agents, Enterprise RAG Systems and modern AI applications.",
-
     url: "https://your-domain.vercel.app",
-
     siteName: "M. Firmansyah Portfolio",
-
     locale: "en_US",
-
     type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
-
     title: "M. Firmansyah | AI Engineer",
-
     description:
       "AI Engineer specializing in LLMs, AI Agents, Enterprise RAG and modern AI applications.",
   },
@@ -87,18 +78,12 @@ export default function RootLayout({
     "@type": "Person",
 
     name: "M. Firmansyah",
-
     jobTitle: "AI Engineer",
-
     description:
       "AI Engineer specializing in AI Chatbots, AI Agents, Enterprise RAG Systems, Large Language Models (LLMs), FastAPI, LangChain, Python, TypeScript, and Next.js.",
-
     url: "https://your-domain.vercel.app",
-
     image: "https://your-domain.vercel.app/avatar.jpg",
-
     email: "mailto:muhammadfirmansyah401@gmail.com",
-
     address: {
       "@type": "PostalAddress",
       addressCountry: "Indonesia",
