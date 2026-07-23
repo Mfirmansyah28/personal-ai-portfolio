@@ -9,7 +9,7 @@ const profile = {
     linkedin: "#",
     availability: "Available for Freelance & Full-Time",
     resume: "",
-    avatar: "",
+    avatar: "/images/avatar.jpg",
 };
 
 export default profile;
