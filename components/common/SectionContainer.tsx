@@ -12,7 +12,7 @@ export default function SectionContainer ({
     return (
         <section
             id={id}
-            className="mx-auto max-w-7xl px-6 py-28"
+            className="relative overflow-hidden py-24"
         >
             {children}
         </section>
