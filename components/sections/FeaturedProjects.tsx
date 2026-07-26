@@ -39,8 +39,8 @@ export default function FeaturedProjects() {
             absolute
             -left-40
             top-20
-            h-[360px]
-            w-[360px]
+            h-90
+            w-90
             rounded-full
             bg-cyan-500/15
             blur-[120px]
@@ -61,8 +61,8 @@ export default function FeaturedProjects() {
             absolute
             -right-40
             bottom-20
-            h-[340px]
-            w-[340px]
+            h-85
+            w-85
             rounded-full
             bg-fuchsia-500/15
             blur-[120px]
@@ -128,7 +128,7 @@ export default function FeaturedProjects() {
 
     {/* Gradient Overlay */}
 
-    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
     {/* Featured Badge */}
 
@@ -194,7 +194,7 @@ export default function FeaturedProjects() {
         absolute
         inset-0
         -translate-x-full
-        bg-gradient-to-r
+        bg-linear-to-r
         from-transparent
         via-white/20
         to-transparent

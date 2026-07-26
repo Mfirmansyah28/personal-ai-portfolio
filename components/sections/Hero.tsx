@@ -36,8 +36,8 @@ export default function Hero() {
           absolute
           -left-56
           -top-56 
-          h-[520px]
-          w-[520px]
+          h-130
+          w-130
           rounded-full
         bg-cyan-500/20 
           blur-[180px]" 
@@ -47,14 +47,14 @@ export default function Hero() {
         absolute 
         -right-44 
         -bottom-44 
-        h-[500px] 
-        w-[500px] 
+        h-125 
+        w-125 
         rounded-full
         bg-fuchsia-500/20 
         blur-[170px]" 
       />
       </div>
-      <div className="relative z-10 mx-auto w-full grid max-w-[1400px] items-center gap-12 px-6 md:px-10 lg:grid-cols-2 xl:gap-20">
+      <div className="relative z-10 mx-auto w-full grid max-w-350 items-center gap-12 px-6 md:px-10 lg:grid-cols-2 xl:gap-20">
         
         {/* ================= LEFT ================= */}
 
@@ -270,8 +270,8 @@ export default function Hero() {
             }}
             className="
               absolute 
-              h-[430px] 
-              w-[430px] 
+              h-107.5 
+              w-107.5 
               rounded-full 
               bg-linear-to-r 
             from-cyan-500 
@@ -308,7 +308,7 @@ export default function Hero() {
               height={650}
               priority
               sizes="(max-width:1024px) 100vw, 460px"
-              className=" w-[280px] rounded-[32px] object-cover select-none sm:w-[34-px] lg:w-[420px] xl:w-[460px]"
+              className=" w-70 rounded-[32px] object-cover select-none sm:w-[34-px] lg:w-115 xl:w-115"
             />
           </motion.div>
           

@@ -67,7 +67,7 @@ export default function Skills() {
                 absolute
                 -left-40
                 top-20
-                h-[320px]
+                h-80
                 w-[320px]
                 rounded-full
                 bg-cyan-500/15
@@ -90,7 +90,7 @@ export default function Skills() {
                 absolute
                 -right-40
                 bottom-20
-                h-[320px]
+                h-80
                 w-[320px]
                 rounded-full
                 bg-fuchsia-500/15
