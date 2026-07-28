@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -36,9 +37,10 @@ export default function Projects() {
     projectsData.flatMap((project) => project.technologies),
   ).size;
 
-  const categories = useMemo(() => {
-    return ["All", ...new Set(projectsData.map((project) => project.category))];
-  }, []);
+  const categories = useMemo(
+    () => ["All", ...new Set(projectsData.map((project) => project.category))],
+    [],
+  );
 
   const filteredProjects = useMemo(() => {
     return projectsData.filter((project) => {
@@ -61,6 +63,7 @@ export default function Projects() {
   return (
     <SectionContainer id="projects">
       {/* ================= Aurora Background ================= */}
+
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <motion.div
           animate={{
@@ -73,15 +76,15 @@ export default function Projects() {
             ease: "easeInOut",
           }}
           className="
-              absolute
-              -left-40
-              top-20
-              h-95
-              w-95
-              rounded-full
-              bg-cyan-500/15
-              blur-[140px]
-            "
+            absolute
+            -left-40
+            top-20
+            h-95
+            w-95
+            rounded-full
+            bg-cyan-500/15
+            blur-[140px]
+          "
         />
 
         <motion.div
@@ -95,207 +98,358 @@ export default function Projects() {
             ease: "easeInOut",
           }}
           className="
-                absolute
-                -right-40
-                bottom-20
-                h-90
-                w-90
-                rounded-full
-                bg-fuchsia-500/15
-                blur-[140px]
-              "
+            absolute
+            -right-40
+            bottom-20
+            h-90
+            w-90
+            rounded-full
+            bg-fuchsia-500/15
+            blur-[140px]
+          "
         />
       </div>
+
       <SectionHeading
         title="Projects"
         subtitle="Explore my AI projects, applications, and experiments."
       />
 
-      {/* Statistics */}
+      {/* ================= Statistics ================= */}
 
-      <div className="group border-white/10 bg-white/5 backdrop-blur-x1 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/30 hover:shadow-[0_20px_60px_rgba(34, 211, 238, 0.20)]">
-        <Card
-          className="
-                group
-                border-white/10
-                bg-white/5
-                backdrop-blur-xl
-                transition-all
-                duration-300
-                hover:-translate-y-2
-                hover:border-cyan-500/30
-                hover:shadow-[0_20px_60px_rgba(34,211,238,0.20)]
-              "
-        >
+      <div className="relative z-10 mb-16 grid gap-6 md:grid-cols-3">
+        <Card className="group border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/30 hover:shadow-[0_20px_60px_rgba(34,211,238,.20)]">
           <CardContent className="py-10 text-center">
-            <div
-              className="
-                    mx-auto
-                    mb-5
-                    flex
-                    h-16
-                    w-16
-                    items-center
-                    justify-center
-                    rounded-2xl
-                    bg-cyan-500/10
-                    text-cyan-400
-                    transition-all
-                    duration-300
-                    group-hover:scale-110
-                    group-hover:rotate-6
-                  "
-            >
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-400 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
               <FaCode className="text-3xl" />
             </div>
 
-            <h2 className="bg-linear-to-r from-cyan-400 to-fuchsia-400 bg-clip-text text-5xl font-bold text-transparent">{completedProjects}</h2>
+            <h2 className="bg-linear-to-r from-cyan-400 to-fuchsia-400 bg-clip-text text-5xl font-bold text-transparent">
+              {completedProjects}
+            </h2>
 
             <p className="mt-2 text-muted-foreground">Completed Projects</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="py-8 text-center">
-            <FaLaptopCode className="text-3xl bg-violet-500/10 text-violet-400" />
+        <Card className="group border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-violet-500/30 hover:shadow-[0_20px_60px_rgba(139,92,246,.20)]">
+          <CardContent className="py-10 text-center">
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-400 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+              <FaLaptopCode className="text-3xl" />
+            </div>
 
-            <h2 className="text-4xl font-bold">{totalTechnologies}</h2>
+            <h2 className="bg-linear-to-r from-violet-400 to-pink-400 bg-clip-text text-5xl font-bold text-transparent">
+              {totalTechnologies}
+            </h2>
 
-            <p className="text-muted-foreground">Technologies</p>
+            <p className="mt-2 text-muted-foreground">Technologies</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="py-8 text-center">
-            <FaRobot className="text-3xl bg-fuchsia-500/10 text-fuchsia-400" />
+        <Card className="group border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-fuchsia-500/30 hover:shadow-[0_20px_60px_rgba(217,70,239,.20)]">
+          <CardContent className="py-10 text-center">
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-fuchsia-500/10 text-fuchsia-400 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+              <FaRobot className="text-3xl" />
+            </div>
 
-            <h2 className="text-4xl font-bold">{totalProjects}</h2>
+            <h2 className="bg-linear-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-5xl font-bold text-transparent">
+              {totalProjects}
+            </h2>
 
-            <p className="text-muted-foreground">AI Projects</p>
+            <p className="mt-2 text-muted-foreground">AI Projects</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Search */}
+      {/* ================= Search ================= */}
 
       <div className="mx-auto mb-10 max-w-2xl">
+        <div className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-300 focus-within:border-cyan-500/40 focus-within:shadow-[0_0_35px_rgba(34,211,238,.20)]">
+          <FaSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground" />
 
-            <div
-              className="
-                relative
-                rounded-2xl
-                border
-                border-white/10
-                bg-white/5
-                backdrop-blur-xl
-                transition-all
-                duration-300
-                focus-within:border-cyan-500/40
-                focus-within:shadow-[0_0_35px_rgba(34,211,238,0.20)]
-              "
-            >
-              <FaSearch
-                className="
-                  absolute
-                  left-5
-                  top-1/2
-                  -translate-y-1/2
-                  text-muted-foreground
-                "
-              />
-
-              <Input
-                placeholder="Search AI Projects, Technologies..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="
-                  h-14
-                  border-0
-                  bg-transparent
-                  pl-14
-                  pr-5
-                  text-base
-                  shadow-none
-                  focus-visible:ring-0
-                "
-              />
-
-            </div>
-          </div>
-
-      {/* Filter */}
-      <div className="mb-14 flex flex-wrap justify-center gap-4">
-        {categories.map((category) => (
-          <Button
-            key={category}
-            variant={selectedCategory === category ? "default" : "outline"}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </Button>
-        ))}
+          <Input
+            placeholder="Search AI Projects, Technologies..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="h-14 border-0 bg-transparent pl-14 pr-5 text-base shadow-none focus-visible:ring-0"
+          />
+        </div>
       </div>
 
-      {/* Project List */}
+      {/* ================= Filter ================= */}
+      <div className="mb-14 flex flex-wrap justify-center gap-4">
+        {categories.map((category) => {
+          const active = selectedCategory === category;
 
-      <div className="relative z-10 space-y-6">
+          return (
+            <motion.div
+              key={category}
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                onClick={() => setSelectedCategory(category)}
+                className={`
+                  rounded-full
+                  px-6
+                  py-6
+                  font-medium
+                  transition-all
+                  duration-300
+
+            ${
+              active
+                ? `
+                  border
+                  border-cyan-500/40
+                  bg-linear-to-r
+                  from-cyan-500
+                  to-blue-500
+                  text-white
+                  shadow-[0_10px_30px_rgba(34,211,238,.35)]
+                `
+                : `
+                  border
+                  border-white/10
+                  bg-white/5
+                  text-muted-foreground
+                  backdrop-blur-xl
+                  hover:border-cyan-500/30
+                  hover:bg-cyan-500/10
+                  hover:text-cyan-400
+                `
+            }
+          `}
+              >
+                {category}
+              </Button>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* ================= Project List ================= */}
+
+      <div className="relative z-10 min-h-87 space-y-8">
         {filteredProjects.map((project, index) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{
+              y: -8,
+              scale: 1.02,
+            }}
             viewport={{ once: true }}
             transition={{
               duration: 0.5,
               delay: index * 0.1,
             }}
           >
-            <Card className="transition-all duration-300 hover:-translate-y-2 hover:border-primary/40 hover:shadow-2xl">
-              <CardContent className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between">
-                <div className="flex-1 space-y-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-2xl font-bold">{project.title}</h3>
+            <Card
+              className="
+                group
+                overflow-hidden
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/5
+                backdrop-blur-xl
+                transition-all
+                duration-500
+                hover:-translate-y-2
+                hover:border-cyan-500/30
+                hover:shadow-[0_25px_80px_rgba(34,211,238,.25)]
+              "
+            >
+              <CardContent className="flex flex-col gap-8 p-8 lg:flex-row lg:items-center">
+                {/* ================= Thumbnail ================= */}
 
-                    {/* Featured Badge */}
+                <div
+                  className="
+                    group/image
+                    relative
+                    h-60
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-white/10
+                    transition-all
+                    duration-500
+                    group-hover:border-cyan-500/40
+                    lg:w-85
+                    shrink-0
+                  "
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width:1024px)100vw,340px"
+                    className="
+                      object-cover
+                      transition-all
+                      duration-700
+                      group-hover/image:scale-110
+                      group-hover/image:rotate-1
+                    "
+                  />
+
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      -translate-x-full
+                      bg-linear-to-r
+                      from-transparent
+                      via-white/20
+                      to-transparent
+                      transition-transform
+                      duration-1000
+                      group-hover/image:translate-x-full
+                    "
+                  />
+
+                  {/* Featured */}
+
+                  <div className="absolute left-4 top-4 flex gap-2">
                     {project.featured && (
-                      <Badge className="bg-yellow-500 text-white">
+                      <Badge
+                        className="
+                        border-cyan-500/30
+                        bg-cyan-500/20
+                        text-cyan-300
+                        backdrop-blur-xl
+                      "
+                      >
                         ⭐ Featured
                       </Badge>
                     )}
 
-                    {/* Status */}
                     <Badge
-                      variant={
-                        project.status === "Completed" ? "default" : "secondary"
+                      className="
+                      border-white/10
+                      bg-black/40
+                      text-white
+                      backdrop-blur-xl
+                    "
+                    >
+                      {project.category}
+                    </Badge>
+                  </div>
+
+                  {/* Status */}
+
+                  <div className="absolute right-4 top-4">
+                    <Badge
+                      className={
+                        project.status === "Completed"
+                          ? "border-green-500/30 bg-green-500/20 text-green-300"
+                          : "border-yellow-500/30 bg-yellow-500/20 text-yellow-300"
                       }
                     >
                       {project.status}
                     </Badge>
-
-                    {/* Category */}
-                    <Badge variant="outline">{project.category}</Badge>
                   </div>
 
-                  {/* Description */}
-                  <p className="leading-7 text-muted-foreground">
+                  {/* Number */}
+
+                  <div
+                    className="
+                      absolute
+                      bottom-4
+                      right-4
+                      rounded-full
+                      bg-black/40
+                      px-3
+                      py-1
+                      text-xs
+                      font-semibold
+                      text-white
+                      backdrop-blur-xl
+                    "
+                  >
+                    #{index + 1}
+                  </div>
+
+                  {/* Title */}
+
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <h3
+                      className="
+                      text-xl
+                      font-bold
+                      text-white
+                      transition-colors
+                      duration-300
+                      group-hover:text-cyan-300
+                    "
+                    >
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* ================= Content ================= */}
+
+                <div className="flex-1 space-y-6">
+                  <h2
+                    className="
+                    text-3xl
+                    font-bold
+                    tracking-tight
+                    transition-colors
+                    duration-300
+                    group-hover:text-cyan-400
+                  "
+                  >
+                    {project.title}
+                  </h2>
+
+                  <p className="leading-8 text-muted-foreground">
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="outline">
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="
+                        rounded-full
+                        border-white/10
+                        bg-white/5
+                        px-3
+                        py-1
+                        transition-all
+                        duration-300
+                        hover:-translate-y-1
+                        hover:border-cyan-500/40
+                        hover:bg-cyan-500/10
+                        hover:text-cyan-400
+                      "
+                      >
                         {tech}
                       </Badge>
                     ))}
                   </div>
                 </div>
 
-                {/* Right */}
-                <div className="flex justify-end">
+                {/* ================= Button ================= */}
+
+                <div className="shrink-0">
                   <Link href={`/projects/${project.slug}`}>
-                    <Button>
+                    <Button
+                      className="
+                      transition-all
+                      duration-300
+                      hover:scale-105
+                      hover:shadow-lg
+                      hover:shadow-cyan-500/20
+                    "
+                    >
                       View Case Study
                       <FaArrowRight className="ml-2" />
                     </Button>
@@ -305,59 +459,247 @@ export default function Projects() {
             </Card>
           </motion.div>
         ))}
-
-        {/* Empty State */}
+        {/* ================= Empty State ================= */}
 
         {filteredProjects.length === 0 && (
-          <Card>
-            <CardContent className="py-16 text-center">
-              <FaSearch className="mx-auto mb-6 text-5xl text-muted-foreground" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            <Card
+              className="
+              overflow-hidden
+              rounded-3xl
+              border
+              border-white/10
+              bg-white/5
+              backdrop-blur-xl
+            "
+            >
+              <CardContent className="py-20 text-center">
+                <motion.div
+                  animate={{
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 3,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <div
+                    className="
+                      mx-auto
+                      mb-8
+                      flex
+                      h-24
+                      w-24
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-cyan-500/10
+                      text-cyan-400
+                    "
+                  >
+                    <FaSearch className="text-5xl" />
+                  </div>
+                </motion.div>
 
-              <h3 className="text-2xl font-semibold">No Projects Found</h3>
+                <h2 className="text-3xl font-bold">No Projects Found</h2>
 
-              <p className="mt-3 text-muted-foreground">
-                No projects match your search or selected category.
-              </p>
+                <p
+                  className="
+                    mx-auto
+                    mt-4
+                    max-w-lg
+                    leading-8
+                    text-muted-foreground
+                  "
+                >
+                  We couldnt find any project matching your search keyword or
+                  selected category. Try another keyword or reset the filter.
+                </p>
 
-              <Button
-                className="mt-6"
-                onClick={() => {
-                  setSearch("");
-                  setSelectedCategory("All");
-                }}
-              >
-                Reset Filter
-              </Button>
-            </CardContent>
-          </Card>
+                <Button
+                  onClick={() => {
+                    setSearch("");
+                    setSelectedCategory("All");
+                  }}
+                  className="
+                    mt-8
+                    transition-all
+                    duration-300
+                    hover:scale-105
+                    hover:shadow-lg
+                    hover:shadow-cyan-500/20
+                  "
+                >
+                  Reset Filter
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
         )}
       </div>
 
-      {/* View All */}
+      {/* ================= View All ================= */}
 
-      <div className="mt-12 flex justify-center">
+      <div className="mt-14 flex justify-center">
         <Link href="/projects">
-          <Button variant="outline">
+          <Button
+            variant="outline"
+            className="
+              rounded-full
+              px-8
+              transition-all
+              duration-300
+              hover:scale-105
+              hover:border-cyan-500/40
+              hover:bg-cyan-500/10
+              hover:text-cyan-400
+            "
+          >
             View All Projects
             <FaArrowRight className="ml-2" />
           </Button>
         </Link>
       </div>
 
-      {/* CTA */}
+      {/* ================= CTA ================= */}
 
-      <div className="mt-20 rounded-2xl border bg-muted/30 p-12 text-center">
-        <h2 className="text-4xl font-bold">Lets Build AI Together</h2>
+      <div
+        className="
+          relative
+          mt-24
+          overflow-hidden
+          rounded-3xl
+          border
+          border-white/10
+          bg-white/5
+          px-8
+          py-20
+          text-center
+          backdrop-blur-xl
+        "
+      >
+        {/* Aurora */}
 
-        <p className="mx-auto mt-4 max-w-2xl leading-8 text-muted-foreground">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.15, 0.3, 0.15],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="
+              absolute
+              -left-32
+              top-10
+              h-72
+              w-72
+              rounded-full
+              bg-cyan-500/20
+              blur-[120px]
+            "
+          />
+
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.15, 0.3, 0.15],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="
+              absolute
+              -right-32
+              bottom-10
+              h-72
+              w-72
+              rounded-full
+              bg-fuchsia-500/20
+              blur-[120px]
+            "
+          />
+        </div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="
+            bg-linear-to-r
+            from-cyan-400
+            via-sky-400
+            to-fuchsia-400
+            bg-clip-text
+            text-4xl
+            font-bold
+            text-transparent
+            md:text-5xl
+          "
+        >
+          Lets Build AI Together
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.6,
+            delay: 0.2,
+          }}
+          className="
+            mx-auto
+            mt-6
+            max-w-3xl
+            leading-8
+            text-muted-foreground
+          "
+        >
           Interested in building AI Chatbots, AI Agents, Enterprise RAG Systems,
           or modern AI applications? Lets collaborate and create impactful AI
-          solutions.
-        </p>
+          solutions together.
+        </motion.p>
 
-        <Link href="#contact">
-          <Button className="mt-8">Contact Me</Button>
-        </Link>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.6,
+            delay: 0.4,
+          }}
+          className="mt-10"
+        >
+          <Link href="#contact">
+            <Button
+              size="lg"
+              className="
+                rounded-full
+                px-10
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-xl
+                hover:shadow-cyan-500/30
+              "
+            >
+              Contact Me
+              <FaArrowRight className="ml-2" />
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </SectionContainer>
   );
