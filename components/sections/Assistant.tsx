@@ -36,51 +36,75 @@ export default function Assistant() {
 
   async function askAI() {
     if (!question.trim()) return;
-
+    
     const history = messages.map((message)=> ({
         role: message.role,
         content: message.content,
     }));
-    setLoading(true);
+    const currentQuestion = question;
 
     const userMessage: Message = {
       role: "user",
-      content: question,
+      content: currentQuestion,
     };
 
     setMessages((prev) => [...prev, userMessage]);
-
+    
     const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            message: question,history
-        }),
-        });
+            },
+            body: JSON.stringify({
+                message: question,
+                history,
+            }),
+            });
+            if (!response.body) {
+            throw new Error("No response body.");
+            }
 
-const result = await response.json();
+const reader = response.body.getReader();
+const decoder = new TextDecoder();
 
-const aiMessage: Message = {
-  role: "assistant",
-  content: response.ok
-    ? result.reply
-    : result.message ?? "Something went wrong.",
-};
-    setMessages((prev) => [...prev, aiMessage]);
+let aiResponse = "";
+
+setMessages((prev) => [
+  ...prev,
+  {
+    role: "assistant",
+    content: "",
+  },
+]);
+
+while (true) {
+  const { done, value } = await reader.read();
+
+  if (done) break;
+
+  aiResponse += decoder.decode(value);
+
+  setMessages((prev) => {
+    const updated = [...prev];
+
+    updated[updated.length - 1] = {
+      role: "assistant",
+      content: aiResponse,
+    };
+
+    return updated;
+  });
+}
     setQuestion("");
     setLoading(false);
     inputRef.current?.focus();
   }
-
   return (
-        <SectionContainer id="assistant">
+    <SectionContainer id="assistant">
       <SectionHeading
         title="AI Assistant"
         subtitle="Ask anything about my AI projects, experience, skills, or engineering journey."
       />
-
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +122,6 @@ const aiMessage: Message = {
           <CardContent className="space-y-8 p-8">
 
             {/* Avatar */}
-
             <div className="flex justify-center">
               <div
                 className="
@@ -117,7 +140,6 @@ const aiMessage: Message = {
             </div>
 
             {/* Input */}
-
             <Input
               ref={inputRef}
               placeholder="Ask anything about me..."
@@ -248,7 +270,26 @@ const aiMessage: Message = {
                             : "You"}
                         </p>
 
-                        <p>{message.content}</p>
+                        <p className="whitespace-pre-wrap leading-8">
+                            {message.content}
+
+                            {loading &&
+                                index === messages.length - 1 &&
+                                message.role === "assistant" && (
+                                <motion.span
+                                    animate={{
+                                    opacity: [0, 1, 0],
+                                    }}
+                                    transition={{
+                                    duration: 0.8,
+                                    repeat: Infinity,
+                                    }}
+                                    className="ml-1 inline-block font-bold text-cyan-400"
+                                >
+                                    ▌
+                                </motion.span>
+                                )}
+                            </p>
                       </div>
                     </div>
                   </motion.div>

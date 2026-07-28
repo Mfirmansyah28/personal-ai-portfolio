@@ -78,6 +78,7 @@ export async function POST(request: Request) {
 
     const completion = await client.chat.completions.create({
       model: "openai/gpt-oss-20b:free",
+      stream: true,
       messages: [
         {
           role: "system",
@@ -120,10 +121,34 @@ export async function POST(request: Request) {
       ],
     });
 
-    return NextResponse.json({
-      success: true,
-      reply: completion.choices[0].message.content ?? "No response.",
-    });
+    const encoder = new TextEncoder();
+
+const stream = new ReadableStream({
+  async start(controller) {
+    try {
+      for await (const chunk of completion) {
+        const text =
+          chunk.choices[0]?.delta?.content ?? "";
+
+        controller.enqueue(
+          encoder.encode(text)
+        );
+      }
+
+      controller.close();
+    } catch (error) {
+      controller.error(error);
+    }
+  },
+});
+
+return new Response(stream, {
+  headers: {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Cache-Control": "no-cache",
+    Connection: "keep-alive",
+  },
+});
   } catch (error) {
     console.error(error);
 
