@@ -25,7 +25,7 @@ Name: ${skill.name}
 Category: ${skill.category}
 Level: ${skill.level}
 Percentage: ${skill.percentage}%
-`
+`,
   )
   .join("\n");
 
@@ -38,7 +38,7 @@ Organization: ${experience.organization}
 Status: ${experience.status}
 Description: ${experience.description}
 Technologies: ${experience.technologies.join(", ")}
-`
+`,
   )
   .join("\n");
 
@@ -63,10 +63,7 @@ const client = new OpenAI({
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { 
-      message,
-      history = [], 
-    } = body;
+    const { message, history = [] } = body;
     if (!message) {
       return NextResponse.json(
         {
@@ -75,17 +72,16 @@ export async function POST(request: Request) {
         },
         {
           status: 400,
-        }
+        },
       );
     }
 
-    const completion =
-      await client.chat.completions.create({
-        model: "openai/gpt-oss-20b:free",
-        messages: [
+    const completion = await client.chat.completions.create({
+      model: "openai/gpt-oss-20b:free",
+      messages: [
         {
-            role: "system",
-            content: `
+          role: "system",
+          content: `
         ${systemPrompt}
 
         ==============================
@@ -115,20 +111,18 @@ export async function POST(request: Request) {
         If a user asks about M. Firmansyah, his projects, skills, experience, technologies, portfolio, or services, prioritize the information provided above.
         If the requested information is not available, politely answer that you don't have that information instead of making it up.
         `,
-            },
-            ...history,
-            {
-                role: "user",
-                content: message,
-            },
-            ],
-      });
+        },
+        ...history,
+        {
+          role: "user",
+          content: message,
+        },
+      ],
+    });
 
     return NextResponse.json({
       success: true,
-      reply:
-        completion.choices[0].message.content ??
-        "No response.",
+      reply: completion.choices[0].message.content ?? "No response.",
     });
   } catch (error) {
     console.error(error);
@@ -140,7 +134,7 @@ export async function POST(request: Request) {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 }
