@@ -63,7 +63,10 @@ const client = new OpenAI({
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { message } = body;
+    const { 
+      message,
+      history = [], 
+    } = body;
     if (!message) {
       return NextResponse.json(
         {
@@ -84,17 +87,36 @@ export async function POST(request: Request) {
             role: "system",
             content: `
         ${systemPrompt}
-        ${portfolioProjects}
+
+        ==============================
+          PROFILE
+        ==============================
         ${profileContext}
+
+        ==============================
+          SKILLS
+        ==============================
         ${skillsContext}
+
+        ==============================
+          EXPERIENCE
+        ==============================
         ${experienceContext}
+
+        ==============================
+          PROJECTS
+        ==============================
         ${portfolioProjects}
 
+        ==============================
+          INSTRUCTIONS
+        ==============================
         Answer only using the information above whenever possible.
         If a user asks about M. Firmansyah, his projects, skills, experience, technologies, portfolio, or services, prioritize the information provided above.
         If the requested information is not available, politely answer that you don't have that information instead of making it up.
         `,
             },
+            ...history,
             {
                 role: "user",
                 content: message,

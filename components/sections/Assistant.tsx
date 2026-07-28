@@ -37,6 +37,10 @@ export default function Assistant() {
   async function askAI() {
     if (!question.trim()) return;
 
+    const history = messages.map((message)=> ({
+        role: message.role,
+        content: message.content,
+    }));
     setLoading(true);
 
     const userMessage: Message = {
@@ -47,14 +51,14 @@ export default function Assistant() {
     setMessages((prev) => [...prev, userMessage]);
 
     const response = await fetch("/api/chat", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    message: question,
-  }),
-});
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            message: question,history
+        }),
+        });
 
 const result = await response.json();
 
