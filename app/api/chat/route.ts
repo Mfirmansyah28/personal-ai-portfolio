@@ -154,8 +154,7 @@ return new Response(stream, {
 
     return NextResponse.json(
       {
-        success: false,
-        message: "Internal Server Error",
+        success: true,
       },
       {
         status: 500,
