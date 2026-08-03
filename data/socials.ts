@@ -10,7 +10,7 @@ const socials = [
 
     {
         name: "Linkedin",
-        href: "#",
+        href: profile.linkedin,
         icon: FaLinkedin,
     },
 

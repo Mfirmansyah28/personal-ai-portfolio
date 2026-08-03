@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.vercel.app"),
+  metadataBase: new URL("https://mfirmansyah.vercel.app"),
 
   title: {
     default: "M. Firmansyah | AI Engineer",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "M. Firmansyah | AI Engineer",
     description:
       "Building AI Chatbots, AI Agents, Enterprise RAG Systems and modern AI applications.",
-    url: "https://your-domain.vercel.app",
+    url: "https://mfirmansyah.vercel.app",
     siteName: "M. Firmansyah Portfolio",
     locale: "en_US",
     type: "website",
@@ -81,8 +81,8 @@ export default function RootLayout({
     jobTitle: "AI Engineer",
     description:
       "AI Engineer specializing in AI Chatbots, AI Agents, Enterprise RAG Systems, Large Language Models (LLMs), FastAPI, LangChain, Python, TypeScript, and Next.js.",
-    url: "https://your-domain.vercel.app",
-    image: "https://your-domain.vercel.app/avatar.jpg",
+    url: "https://mfirmansyah.vercel.app",
+    image: "https://mfirmansyah.vercel.app/images/avatar.jpg",
     email: "mailto:muhammadfirmansyah401@gmail.com",
     address: {
       "@type": "PostalAddress",
@@ -91,7 +91,7 @@ export default function RootLayout({
 
     sameAs: [
       "https://github.com/Mfirmansyah28",
-      "https://linkedin.com/in/your-linkedin",
+      "https://www.linkedin.com/in/mfirmansyah28/",
     ],
 
     knowsAbout: [

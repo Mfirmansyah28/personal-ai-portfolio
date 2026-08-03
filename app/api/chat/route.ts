@@ -154,7 +154,7 @@ return new Response(stream, {
 
     return NextResponse.json(
       {
-        success: true,
+        success: false,
       },
       {
         status: 500,

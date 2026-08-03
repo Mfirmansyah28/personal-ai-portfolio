@@ -76,15 +76,35 @@ export default function Assistant() {
       if (!response.ok) {
         throw new Error("Failed to fetch AI response.");
       }
-      const data = await response.json();
 
-        setMessages((prev) => [
-          ...prev,
-          {
+      if (!response.body) {
+        throw new Error("No response body.");
+      }
+
+      // Add empty assistant message to stream into
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "" },
+      ]);
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = {
             role: "assistant",
-            content: data.reply,
-          },
-        ]);
+            content: updated[updated.length - 1].content + chunk,
+          };
+          return updated;
+        });
+      }
     } catch (error) {
       console.error(error);
 

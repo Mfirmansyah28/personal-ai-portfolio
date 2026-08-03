@@ -136,7 +136,7 @@ export default function Hero() {
                 duration-300 
               hover:border-cyan-400 
               hover:bg-cyan-500/10 
-                hover:-translate-w-1 
+                hover:-translate-x-1 
                 cursor-pointer"
               >
                 Download CV
@@ -308,7 +308,7 @@ export default function Hero() {
               height={650}
               priority
               sizes="(max-width:1024px) 100vw, 460px"
-              className=" w-70 rounded-[32px] object-cover select-none sm:w-[34-px] lg:w-115 xl:w-115"
+              className=" w-70 rounded-[32px] object-cover select-none sm:w-86 lg:w-115 xl:w-115"
             />
           </motion.div>
           

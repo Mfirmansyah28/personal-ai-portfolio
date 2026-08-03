@@ -161,7 +161,7 @@ export default function Contact() {
               </div>
 
               <div className="space-y-6">
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
+                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-400">
                     <FaEnvelope size={20} />
                   </div>
@@ -179,7 +179,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
+                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-500/15 text-fuchsia-400">
                     <FaMapMarkerAlt size={20} />
                   </div>
@@ -192,7 +192,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
+                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-400">
                     <FaGithub size={20} />
                   </div>
@@ -213,7 +213,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
+                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-400">
                     <FaLinkedin size={20} />
                   </div>
@@ -234,7 +234,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
+                <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:shadow-lg hover:shadow-cyan-500/10">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-400">
                     <FaBriefcase size={20} />
                   </div>
@@ -408,7 +408,7 @@ export default function Contact() {
           <Card className="group rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/30 hover:shadow-[0_35px_90px_rgba(34, 211, 238, 0.25">
             <CardContent className="p-8 lg:p-10">
               <div className="mb-8">
-                <h3 className="text=3xl font-bold">Send Me a message</h3>
+                <h3 className="text-3xl font-bold">Send Me a message</h3>
 
                 <p className="mt-3 leading-7 text-muted-foreground">
                   Have an AI project, collaboration idea, or freelance
