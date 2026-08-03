@@ -4,38 +4,31 @@ import { motion } from "framer-motion";
 
 interface SectionHeadingProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
+  align?: "left" | "center";
 }
 
 export default function SectionHeading({
   title,
   subtitle,
+  align = "left",
 }: SectionHeadingProps) {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        y: 30,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      transition={{
-        duration: 0.6,
-      }}
-      viewport={{
-        once: true,
-      }}
-      className="mb-16 text-center"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className={`mb-14 ${align === "center" ? "text-center" : ""}`}
     >
-      <h2 className="text-4xl font-bold md:text-5xl">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
         {title}
-      </h2>
-
-      <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-        {subtitle}
       </p>
+      {subtitle && (
+        <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+          {subtitle}
+        </h2>
+      )}
     </motion.div>
   );
 }

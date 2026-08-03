@@ -2,31 +2,17 @@
 
 import { motion } from "framer-motion";
 import skillsData from "@/data/skillsData";
-import SectionContainer from "@/components/common/SectionContainer";
 import SectionHeading from "@/components/common/SectionHeading";
-import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-
+import Container from "@/components/layout/Container";
 import {
-  FaPython,
-  FaDocker,
-  FaGitAlt,
-  FaGithub,
-  FaReact,
-  FaRobot,
+  FaPython, FaDocker, FaGitAlt, FaGithub, FaReact, FaRobot,
 } from "react-icons/fa";
-
 import {
-  SiFastapi,
-  SiLangchain,
-  SiNextdotjs,
-  SiPostgresql,
-  SiTailwindcss,
-  SiTypescript,
-  SiSqlite,
+  SiFastapi, SiLangchain, SiNextdotjs, SiPostgresql,
+  SiTailwindcss, SiTypescript, SiSqlite,
 } from "react-icons/si";
 
-const iconMap = {
+const iconMap: Record<string, React.ElementType> = {
   python: FaPython,
   docker: FaDocker,
   react: FaReact,
@@ -46,189 +32,66 @@ const iconMap = {
   github: FaGithub,
 };
 
+const categories = ["Frontend", "Backend", "Artificial Intelligence", "Database", "DevOps"];
+
 export default function Skills() {
   return (
-    <SectionContainer id="skills">
-
-      {/* ================= Aurora Background ================= */}
-      <div className="absolute inset-0 -z-20 overflow-hidden">
-        {/* Left Glow */}
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.15, 0.3, 0.15],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="
-                absolute
-                -left-40
-                top-20
-                h-80
-                w-[320px]
-                rounded-full
-                bg-cyan-500/15
-                blur-[120px]"
+    <section id="skills" className="border-b border-border py-24">
+      <Container>
+        <SectionHeading
+          title="Skills"
+          subtitle="Technologies I use to build AI-powered applications."
         />
 
-        {/* Right Glow */}
+        <div className="space-y-14">
+          {categories.map((cat) => {
+            const items = skillsData.filter((s) => s.category === cat);
+            if (!items.length) return null;
 
-        <motion.div
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.15, 0.3, 0.15],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="
-                absolute
-                -right-40
-                bottom-20
-                h-80
-                w-[320px]
-                rounded-full
-                bg-fuchsia-500/15
-                blur-[120px]"
-        />
-      </div>
-      <SectionHeading
-        title="My Skills"
-        subtitle="Technologies I use to build AI-powered applications."
-      />
-      <div className="relative z-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {skillsData.map((skill, index) => {
-          const Icon = iconMap[skill.icon as keyof typeof iconMap];
-
-          return (
-            <motion.div
-              key={skill.name}
-              initial={{
-                opacity: 0,
-                y: 40,
-                scale: 0.95,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.2,
-              }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.08,
-                ease: "easeOut",
-              }}
-              whileHover={{
-                scale: 1.03,
-                y: -8,
-              }}
-            >
-              <Card
-                className="
-                    group
-                    h-full
-                    border
-                    border-white/10
-                    bg-white/5
-                    backdrop-blur-xl
-                    transition-all
-                    duration-300
-                    hover:-translate-y-2
-                    hover:border-cyan-500/40
-                    hover:shadow-[0_20px_60px_rgba(6, 182, 212, 0.25)]"
-              >
-                <CardContent
-                  className="
-                    space-y-6
-                    p-6
-                    transition-all
-                    duration-300
-                    group-hover:scale-[1.01]
-                    "
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div
-                        className="
-                            flex
-                            h-14
-                            w-14
-                            items-center
-                            justify-center
-                            rounded-2xl
-                            border
-                            border-cyan-500/20
-                            bg-cyan-500/10
-                            text-cyan-400
-                            duration-300
-                            group-hover:scale-110
-                            group-hover:border-cyan-400/40"
+            return (
+              <div key={cat}>
+                <h3 className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  {cat}
+                </h3>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {items.map((skill, i) => {
+                    const Icon = iconMap[skill.icon] ?? FaRobot;
+                    return (
+                      <motion.div
+                        key={skill.name}
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: i * 0.06 }}
+                        className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-colors hover:border-foreground/20"
                       >
-                        <Icon size={30} 
-                              className="
-                                transition-all
-                                duration-300
-                                group-hover:scale-110
-                                group-hover:text-cyan-400"
-                        />
-                      </div>
-
-                      <div>
-                        <h3 className="
-                              font-semibold
-                              transition-colors
-                              duration-300
-                              group-hover:text-cyan-400
-                        ">
-                            {skill.name}
-                        </h3>
-
-                        <p className="text-sm text-muted-foreground">
-                          {skill.category}
-                        </p>
-                      </div>
-                    </div>
-
-                    <span
-                      className="
-                        rounded-full
-                        bg-cyan-500/10
-                        px-3
-                        py-1
-                        text-xs
-                        font-semibold
-                        text-cyan-400"
-                      >
-                      {skill.level}
-                    </span>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Progress
-                      value={skill.percentage}
-                      className="h-2"
-                    />
-                      <div className="flex justify-between text-xs text-shadow-muted-foreground">
-                          <span>Beginner</span>
-                          <span>Intermediate</span>
-                          <span>Advance</span>
-                      </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          );
-        })}
-      </div>
-    </SectionContainer>
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition-colors group-hover:text-foreground">
+                          <Icon size={20} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-sm font-medium">{skill.name}</p>
+                          <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-muted">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${skill.percentage}%` }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.8, delay: i * 0.06 + 0.2, ease: "easeOut" }}
+                              className="h-full rounded-full bg-foreground"
+                            />
+                          </div>
+                        </div>
+                        <span className="shrink-0 text-xs text-muted-foreground">
+                          {skill.percentage}%
+                        </span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Container>
+    </section>
   );
 }

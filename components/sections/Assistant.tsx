@@ -2,17 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Send, Bot, User, Sparkles } from "lucide-react";
 
-import {
-  FaRobot,
-  FaPaperPlane,
-  FaUserCircle,
-} from "react-icons/fa";
-
-import SectionContainer from "@/components/common/SectionContainer";
 import SectionHeading from "@/components/common/SectionHeading";
-
-import { Card, CardContent } from "@/components/ui/card";
+import Container from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -20,6 +13,15 @@ type Message = {
   role: "user" | "assistant";
   content: string;
 };
+
+const quickQuestions = [
+  "Tell me about yourself",
+  "What AI projects have you built?",
+  "What technologies do you specialize in?",
+  "What services do you offer?",
+  "Can I hire you for freelance work?",
+  "How can I contact you?",
+];
 
 export default function Assistant() {
   const [question, setQuestion] = useState("");
@@ -29,63 +31,29 @@ export default function Assistant() {
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const quickQuestions = [
-    "Tell me about yourself",
-    "What AI projects have you built?",
-    "What technologies do you specialize in?",
-    "What services do you offer?",
-    "Can I hire you for freelance work?",
-    "How can I contact you?",
-  ];
-
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
   async function sendMessage(text: string) {
     if (!text.trim() || loading) return;
 
-    const history = messages.map((message) => ({
-      role: message.role,
-      content: message.content,
-    }));
-
-    const userMessage: Message = {
-      role: "user",
-      content: text,
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
+    const history = messages.map((m) => ({ role: m.role, content: m.content }));
+    setMessages((prev) => [...prev, { role: "user", content: text }]);
     setQuestion("");
     setLoading(true);
 
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: text,
-          history,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, history }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch AI response.");
-      }
+      if (!response.ok) throw new Error("Failed to fetch AI response.");
+      if (!response.body) throw new Error("No response body.");
 
-      if (!response.body) {
-        throw new Error("No response body.");
-      }
-
-      // Add empty assistant message to stream into
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: "" },
-      ]);
+      setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -93,9 +61,7 @@ export default function Assistant() {
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
-
         const chunk = decoder.decode(value, { stream: true });
-
         setMessages((prev) => {
           const updated = [...prev];
           updated[updated.length - 1] = {
@@ -107,14 +73,9 @@ export default function Assistant() {
       }
     } catch (error) {
       console.error(error);
-
       setMessages((prev) => [
         ...prev,
-        {
-          role: "assistant",
-          content:
-            "Sorry, something went wrong while contacting the AI.",
-        },
+        { role: "assistant", content: "Sorry, something went wrong. Please try again." },
       ]);
     } finally {
       setLoading(false);
@@ -122,293 +83,139 @@ export default function Assistant() {
     }
   }
 
-  function askAI() {
-    sendMessage(question);
-  }
-
-  function handleQuickQuestion(text: string) {
-    sendMessage(text);
-  }
-
   return (
-    <SectionContainer id="assistant">
-    <SectionHeading
-    title="AI Assistant"
-    subtitle="Ask anything about my AI projects, experience, skills, or engineering journey."
-  />
-
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6 }}
-  >
-    <Card
-      className="
-        rounded-3xl
-        border-white/10
-        bg-white/5
-        backdrop-blur-xl
-      "
-    >
-      <CardContent className="space-y-8 p-8">
-
-        {/* Avatar */}
-        <div className="flex justify-center">
-          <div
-            className="
-              flex
-              h-20
-              w-20
-              items-center
-              justify-center
-              rounded-full
-              bg-cyan-500/10
-              text-cyan-400
-            "
-          >
-            <FaRobot className="text-4xl" />
-          </div>
-        </div>
-
-        {/* Input */}
-        <Input
-          ref={inputRef}
-          placeholder="Ask anything about me..."
-          value={question}
-          disabled={loading}
-          onChange={(e) => setQuestion(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              askAI();
-            }
-          }}
-          className="h-14 rounded-xl"
+    <section id="assistant" className="border-b border-border py-24">
+      <Container>
+        <SectionHeading
+          title="AI Assistant"
+          subtitle="Ask anything about my work, skills, or experience."
         />
 
-        {/* Button */}
-        <Button
-          type="button"
-          onClick={askAI}
-          disabled={loading}
-          className="w-full"
-        >
-          <FaPaperPlane className="mr-2" />
-
-          {loading ? "Thinking..." : "Ask AI"}
-        </Button>
-
-        {/* Empty State */}
-        {messages.length === 0 && (
-          <>
-            <Card>
-              <CardContent className="py-10 text-center">
-                <h3 className="text-xl font-semibold">
-                  Start chatting
-                </h3>
-
-                <p className="mt-2 text-muted-foreground">
-                  Ask anything about my AI projects,
-                  skills, experience, or engineering
-                  journey.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Quick Questions */}
-            <div className="grid gap-3 md:grid-cols-2">
-              {quickQuestions.map((item) => (
-                <motion.div
-                  key={item}
-                  whileHover={{ y: -3 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button
-                    variant="outline"
-                    disabled={loading}
-                    onClick={() =>
-                      handleQuickQuestion(item)
-                    }
-                    className="
-                      h-auto
-                      w-full
-                      justify-start
-                      rounded-xl
-                      border-white/10
-                      bg-white/5
-                      p-5
-                      text-left
-                      transition-all
-                      duration-300
-                      hover:border-cyan-500/40
-                      hover:bg-cyan-500/10
-                    "
-                  >
-                    {item}
-                  </Button>
-                </motion.div>
-              ))}
+        <div className="mx-auto max-w-3xl">
+          <div className="overflow-hidden rounded-2xl border border-border bg-card">
+            {/* Header */}
+            <div className="flex items-center gap-3 border-b border-border px-6 py-4">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border bg-background">
+                <Bot size={15} className="text-muted-foreground" />
+              </div>
+              <div>
+                <p className="text-sm font-medium">AI Assistant</p>
+                <p className="text-xs text-muted-foreground">Knows everything about M. Firmansyah</p>
+              </div>
+              <div className="ml-auto flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                <span className="text-xs text-muted-foreground">Online</span>
+              </div>
             </div>
-          </>
-        )}
 
-        {/* Chat History */}
-        <div className="space-y-6">
-          {messages.map((message, index) => {
-          const isAI = message.role === "assistant";
+            {/* Messages area */}
+            <div className="h-100 overflow-y-auto p-6">
+              {messages.length === 0 ? (
+                <div className="flex h-full flex-col items-center justify-center gap-6 text-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background">
+                    <Sparkles size={20} className="text-muted-foreground" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Start a conversation</p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      Ask anything about my AI projects, skills, or experience.
+                    </p>
+                  </div>
+                  <div className="grid w-full max-w-sm gap-2 sm:grid-cols-2">
+                    {quickQuestions.map((q) => (
+                      <button
+                        key={q}
+                        onClick={() => sendMessage(q)}
+                        disabled={loading}
+                        className="rounded-xl border border-border bg-background px-3 py-2.5 text-left text-xs text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground disabled:opacity-50"
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {messages.map((msg, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={`flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
+                    >
+                      <div
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border bg-background ${
+                          msg.role === "user" ? "mt-0.5" : "mt-0.5"
+                        }`}
+                      >
+                        {msg.role === "assistant" ? (
+                          <Bot size={13} className="text-muted-foreground" />
+                        ) : (
+                          <User size={13} className="text-muted-foreground" />
+                        )}
+                      </div>
+                      <div
+                        className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+                          msg.role === "user"
+                            ? "bg-foreground text-background"
+                            : "border border-border bg-background text-foreground"
+                        }`}
+                      >
+                        <p className="whitespace-pre-wrap">{msg.content}</p>
+                      </div>
+                    </motion.div>
+                  ))}
 
-  return (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className={`flex ${
-        isAI ? "justify-start" : "justify-end"
-      }`}
-    >
-      <div
-        className={`
-          flex
-          max-w-[85%]
-          items-start
-          gap-3
-          ${isAI ? "" : "flex-row-reverse"}
-        `}
-      >
-        {/* Avatar */}
-        <div
-          className={`
-            flex
-            h-11
-            w-11
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            ${
-              isAI
-                ? "bg-cyan-500/15 text-cyan-400"
-                : "bg-violet-500/15 text-violet-400"
-            }
-          `}
-        >
-          {isAI ? <FaRobot /> : <FaUserCircle />}
-        </div>
+                  {loading && (
+                    <div className="flex gap-3">
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border bg-background mt-0.5">
+                        <Bot size={13} className="text-muted-foreground" />
+                      </div>
+                      <div className="flex items-center gap-1 rounded-2xl border border-border bg-background px-4 py-3">
+                        {[0, 1, 2].map((i) => (
+                          <span
+                            key={i}
+                            className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground"
+                            style={{ animationDelay: `${i * 0.15}s` }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-        {/* Bubble */}
-        <div
-          className={`
-            rounded-2xl
-            px-5
-            py-4
-            leading-8
-            ${
-              isAI
-                ? "border border-cyan-500/20 bg-cyan-500/10"
-                : "border border-violet-500/20 bg-violet-500/10"
-            }
-          `}
-        >
-          <p
-            className={`
-              mb-2
-              text-sm
-              font-semibold
-              ${
-                isAI
-                  ? "text-cyan-400"
-                  : "text-violet-400"
-              }
-            `}
-          >
-            {isAI ? "AI Assistant" : "You"}
-          </p>
-
-          <p className="whitespace-pre-wrap leading-8">
-            {message.content}
-
-            {loading &&
-              isAI &&
-              index === messages.length - 1 && (
-                <motion.span
-                  animate={{
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: Infinity,
-                  }}
-                  className="ml-1 inline-block font-bold text-cyan-400"
-                >
-                  ▌
-                </motion.span>
+                  <div ref={bottomRef} />
+                </div>
               )}
-          </p>
+            </div>
+
+            {/* Input */}
+            <div className="border-t border-border p-4">
+              <form
+                onSubmit={(e) => { e.preventDefault(); sendMessage(question); }}
+                className="flex gap-2"
+              >
+                <Input
+                  ref={inputRef}
+                  placeholder="Ask me anything..."
+                  value={question}
+                  disabled={loading}
+                  onChange={(e) => setQuestion(e.target.value)}
+                  className="h-10 flex-1 rounded-xl text-sm"
+                />
+                <Button
+                  type="submit"
+                  size="icon"
+                  disabled={loading || !question.trim()}
+                  className="h-10 w-10 shrink-0 rounded-xl"
+                >
+                  <Send size={15} />
+                </Button>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </Container>
+    </section>
   );
-})}
-
-<div ref={bottomRef} />
-</div>
-
-{/* Typing Indicator */}
-{loading && (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-  >
-    <div className="flex items-center gap-3">
-
-      <div
-        className="
-          flex
-          h-11
-          w-11
-          items-center
-          justify-center
-          rounded-full
-          bg-cyan-500/15
-          text-cyan-400
-        "
-      >
-        <FaRobot />
-      </div>
-
-      <div
-        className="
-          rounded-2xl
-          border
-          border-cyan-500/20
-          bg-cyan-500/10
-          px-5
-          py-4
-        "
-      >
-        <div className="flex gap-1">
-          <span className="h-2 w-2 rounded-full bg-cyan-400 animate-bounce"></span>
-
-          <span
-            className="h-2 w-2 rounded-full bg-cyan-400 animate-bounce"
-            style={{ animationDelay: ".15s" }}
-          ></span>
-
-          <span
-            className="h-2 w-2 rounded-full bg-cyan-400 animate-bounce"
-            style={{ animationDelay: ".3s" }}
-          ></span>
-        </div>
-      </div>
-
-    </div>
-  </motion.div>
-)}
-
-      </CardContent>
-    </Card>
-  </motion.div>
-</SectionContainer>
-);
 }
