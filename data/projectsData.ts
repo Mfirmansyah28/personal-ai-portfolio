@@ -22,7 +22,7 @@ const projectsData: Project [] = [
         description: "AI Costumer Service Chatbot",
         longDescription:
             "AI-powered customer service chatbot built with Streamlit and OpenRouter. It provides intelligent product recommendations, answers customer questions, manages conversation history, and follows a customized customer service persona.",
-        image: "/projects/chatbot.png",
+        image: "/images/og-image.png",
         technologies: [
             "Python",
             "Streamlit",
@@ -43,7 +43,7 @@ const projectsData: Project [] = [
         description: "AI Agent App",
         longDescription:
             "AI Agent App is an intelligent application capable of multi-step reasoning, task planning, and workflow automation using Large Language Models. The project is designed with a modular architecture that enables future expansion into multi-agent collaboration and enterprise automation.",
-        image: "/projects/ai-agent.png",
+        image: "/images/og-image.png",
         technologies: [
             "Python",
             "FastAPI",
@@ -64,7 +64,7 @@ const projectsData: Project [] = [
         description: "Enterprise RAG Agent",
         longDescription:
             "Enterprise Retrieval-Augmented Generation platform designed for intelligent document retrieval and currently evolving into a Multi-Agent System for enterprise knowledge management.",
-        image: "/projects/enterprise-rag.png",
+        image: "/images/og-image.png",
         technologies: [
             "LangChain",
             "RAG",

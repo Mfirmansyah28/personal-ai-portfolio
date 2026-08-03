@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { Loader2, Send, Github, Linkedin, Mail, MapPin, Briefcase } from "lucide-react";
+import { Loader2, Send, Mail, MapPin, Briefcase } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import profile from "@/data/profile";
 import SectionHeading from "@/components/common/SectionHeading";
@@ -26,8 +27,8 @@ type ContactForm = z.infer<typeof formSchema>;
 const contactInfo = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}`, icon: Mail },
   { label: "Location", value: profile.location, href: null, icon: MapPin },
-  { label: "GitHub", value: "github.com/Mfirmansyah28", href: profile.github, icon: Github },
-  { label: "LinkedIn", value: "linkedin.com/in/mfirmansyah28", href: profile.linkedin, icon: Linkedin },
+  { label: "GitHub", value: "github.com/Mfirmansyah28", href: profile.github, icon: FaGithub },
+  { label: "LinkedIn", value: "linkedin.com/in/mfirmansyah28", href: profile.linkedin, icon: FaLinkedin },
   { label: "Availability", value: profile.availability, href: null, icon: Briefcase },
 ];
 

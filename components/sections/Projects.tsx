@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Search } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 import projectsData from "@/data/projectsData";
 import SectionHeading from "@/components/common/SectionHeading";
@@ -146,7 +147,7 @@ export default function Projects() {
                 <div className="flex shrink-0 flex-row gap-2 sm:flex-col">
                   <Link href={project.github} target="_blank" rel="noopener noreferrer">
                     <Button variant="outline" size="sm" className="w-full gap-2">
-                      <Github size={14} />
+                      <FaGithub size={14} />
                       GitHub
                     </Button>
                   </Link>

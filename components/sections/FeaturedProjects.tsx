@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 import projectsData from "@/data/projectsData";
 import SectionHeading from "@/components/common/SectionHeading";
@@ -87,7 +88,7 @@ export default function FeaturedProjects() {
                 <div className="mt-5 flex gap-2">
                   <Link href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1">
                     <Button variant="outline" size="sm" className="w-full gap-2">
-                      <Github size={14} />
+                      <FaGithub size={14} />
                       GitHub
                     </Button>
                   </Link>

@@ -3,15 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import profile from "@/data/profile";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/layout/Container";
 
 const socials = [
-  { label: "GitHub", href: profile.github, icon: Github },
-  { label: "LinkedIn", href: profile.linkedin, icon: Linkedin },
+  { label: "GitHub", href: profile.github, icon: FaGithub },
+  { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin },
   { label: "Email", href: `mailto:${profile.email}`, icon: Mail },
 ];
 
@@ -99,10 +100,11 @@ export default function Hero() {
                   src={profile.avatar}
                   alt={profile.name}
                   width={440}
-                  height={560}
+                  height={550}
                   priority
                   sizes="(max-width:1024px) 80vw, 440px"
                   className="w-72 object-cover sm:w-80 lg:w-110"
+                  style={{ height: "auto" }}
                 />
               </div>
 
