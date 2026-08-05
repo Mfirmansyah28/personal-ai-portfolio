@@ -22,7 +22,7 @@ const projectsData: Project [] = [
         description: "AI Costumer Service Chatbot",
         longDescription:
             "AI-powered customer service chatbot built with Streamlit and OpenRouter. It provides intelligent product recommendations, answers customer questions, manages conversation history, and follows a customized customer service persona.",
-        image: "/images/og-image.png",
+        image: "/images/chatbot.png",
         technologies: [
             "Python",
             "Streamlit",
@@ -30,7 +30,7 @@ const projectsData: Project [] = [
             "LLM",
         ],
         github: "https://github.com/Mfirmansyah28/chatbot",
-        demo: "",
+        demo: "https://chatbot-xdpwmm2snbqlywrjzrpq2m.streamlit.app/",
         featured: true,
         status: "Completed",
     },
@@ -43,7 +43,7 @@ const projectsData: Project [] = [
         description: "AI Agent App",
         longDescription:
             "AI Agent App is an intelligent application capable of multi-step reasoning, task planning, and workflow automation using Large Language Models. The project is designed with a modular architecture that enables future expansion into multi-agent collaboration and enterprise automation.",
-        image: "/images/og-image.png",
+        image: "/images/ai-agent-app.png",
         technologies: [
             "Python",
             "FastAPI",
@@ -51,7 +51,7 @@ const projectsData: Project [] = [
             "LLM",
         ],
         github: "https://github.com/Mfirmansyah28/ai-agent-app",
-        demo: "",
+        demo: "https://ai-agent-app-aitagwnfamxrc9sqxhriec.streamlit.app/",
         featured: true,
         status: "Completed",
     },
@@ -64,7 +64,7 @@ const projectsData: Project [] = [
         description: "Enterprise RAG Agent",
         longDescription:
             "Enterprise Retrieval-Augmented Generation platform designed for intelligent document retrieval and currently evolving into a Multi-Agent System for enterprise knowledge management.",
-        image: "/images/og-image.png",
+        image: "/images/rag-system.png",
         technologies: [
             "LangChain",
             "RAG",
@@ -73,7 +73,7 @@ const projectsData: Project [] = [
             "Multi-Agent",
         ],
         github: "https://github.com/Mfirmansyah28/enterprise_rag_agent",
-        demo: "",
+        demo: "https://enterpriseragagent-nyeclrndfwz7cvo5y3a43w.streamlit.app/",
         featured: true,
         status: "In Progress",
     },
