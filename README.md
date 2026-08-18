@@ -141,5 +141,5 @@ Buka [http://localhost:3000](http://localhost:3000) pada browser Anda untuk meli
 ---
 
 <div align="center">
-  <sub>Dibuat dengan oleh <a href="https://github.com/Mfirmansyah28">M. Firmansyah</a></sub>
+  <sub>Dibuat oleh <a href="https://github.com/Mfirmansyah28">M. Firmansyah</a></sub>
 </div>
