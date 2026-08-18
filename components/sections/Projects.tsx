@@ -129,7 +129,7 @@ export default function Projects() {
                     </div>
                   </div>
                   <p className="text-sm leading-relaxed text-muted-foreground">
-                    {project.longDescription}
+                    {project.description}
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {project.technologies.map((tech) => (

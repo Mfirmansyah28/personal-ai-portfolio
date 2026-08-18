@@ -71,7 +71,7 @@ export default function FeaturedProjects() {
               <div className="flex flex-1 flex-col p-6">
                 <h3 className="font-semibold leading-snug">{project.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {project.longDescription}
+                  {project.description}
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-1.5">
