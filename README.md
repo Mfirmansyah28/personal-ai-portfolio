@@ -31,10 +31,10 @@ Website ini dilengkapi dengan **Asisten AI Interaktif** yang mampu menjawab pert
 
 ## ✨ Fitur Unggulan
 
-- 🤖 **Interactive Portfolio AI Assistant** — Asisten virtual cerdas terintegrasi OpenRouter dengan *streaming response* untuk menjawab pertanyaan seputar CV dan portofolio.
+- 🤖 **Interactive Portfolio AI Assistant** — Asisten virtual cerdas terintegrasi OpenRouter dengan *auto-routing* model gratis terbaik dan dukungan render *Markdown* (tabel, list, kode) secara *real-time*.
 - 📂 **Detailed Project Showcase** — Halaman detail komprehensif untuk setiap proyek AI, lengkap dengan arsitektur alur kerja (*system workflow*), kapabilitas fitur, dan sorotan teknis.
-- 🎨 **Modern Sleek Aesthetics** — Desain modern bertema gelap (*dark mode*) yang elegan, tipografi bersih, dan animasi halus ditenagai oleh **Framer Motion**.
-- ⚡ **High Performance & Modern Stack** — Dibangun di atas **Next.js 15 (Turbopack)**, **React 19**, dan **Tailwind CSS v4** untuk kecepatan *load* instan dan responsivitas optimal.
+- 🎨 **Modern Sleek Aesthetics** — Desain modern bertema gelap (*dark mode*) yang elegan, tipografi bersih, dan animasi halus ditenagai oleh **Framer Motion**. Termasuk desain lencana (*badge*) level kemahiran untuk bagian *Skills*.
+- ⚡ **High Performance & Modern Stack** — Dibangun di atas **Next.js 15 (App Router)**, **React 19**, dan **Tailwind CSS v4** untuk kecepatan *load* instan dan responsivitas optimal.
 - 🔍 **Real-Time Project Filtering** — Pencarian cepat dan filter kategori proyek (Chatbot, AI Agent, RAG).
 - 📱 **Fully Responsive Layout** — Tampilan yang nyaman dan adaptif di semua perangkat (Desktop, Tablet, dan Mobile).
 - 🛡️ **Form Kontak Terintegrasi** — Form kontak berbasis validasi skema modern dan notifikasi interaktif via **Sonner**.
