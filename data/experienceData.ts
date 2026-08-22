@@ -12,7 +12,7 @@ const experienceData: Experience[] = [
         year: "2025",
         title: "Started Learning Artificial Intelligence",
         organization: "Self Learning",
-        description: "Began learning Python, machine learning fundamentals, and moder wab development while building a strong programming foundation.",
+        description: "Began learning Python, machine learning fundamentals, and modern web development while building a strong programming foundation.",
         technologies: [
             "Python",
             "Git",

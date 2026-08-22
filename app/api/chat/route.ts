@@ -77,7 +77,7 @@ export async function POST(request: Request) {
     }
 
     const completion = await client.chat.completions.create({
-      model: "openai/gpt-oss-20b:free",
+      model: "openrouter/free",
       stream: true,
       messages: [
         {

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Bot, User, Sparkles } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import SectionHeading from "@/components/common/SectionHeading";
 import Container from "@/components/layout/Container";
@@ -162,7 +164,15 @@ export default function Assistant() {
                             : "border border-border bg-background text-foreground"
                         }`}
                       >
-                        <p className="whitespace-pre-wrap">{msg.content}</p>
+                        {msg.role === "assistant" ? (
+                          <div className="prose prose-sm prose-neutral dark:prose-invert max-w-none">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                              {msg.content}
+                            </ReactMarkdown>
+                          </div>
+                        ) : (
+                          <p className="whitespace-pre-wrap">{msg.content}</p>
+                        )}
                       </div>
                     </motion.div>
                   ))}

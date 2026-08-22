@@ -70,18 +70,9 @@ export default function Skills() {
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="truncate text-sm font-medium">{skill.name}</p>
-                          <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-muted">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${skill.percentage}%` }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 0.8, delay: i * 0.06 + 0.2, ease: "easeOut" }}
-                              className="h-full rounded-full bg-foreground"
-                            />
-                          </div>
                         </div>
-                        <span className="shrink-0 text-xs text-muted-foreground">
-                          {skill.percentage}%
+                        <span className="shrink-0 rounded-full border border-border bg-background px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
+                          {skill.level}
                         </span>
                       </motion.div>
                     );

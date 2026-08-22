@@ -4,7 +4,6 @@ import Skills from "@/components/sections/Skills";
 import Timeline from "@/components/sections/Timeline";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import Assistant from "@/components/sections/Assistant";
-import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
 
 export default function HomePage() {
@@ -18,7 +17,6 @@ export default function HomePage() {
                 <Timeline />
                 <FeaturedProjects />
                 <Assistant />
-                <Projects />
                 <Contact />
             </main>
 
