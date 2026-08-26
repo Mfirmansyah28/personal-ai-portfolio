@@ -76,7 +76,7 @@ export default function About() {
             className="space-y-8"
           >
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Hi, I'm {profile.name}</h3>
+              <h3 className="text-xl font-semibold">Hi, Im {profile.name}</h3>
               <p className="leading-relaxed text-muted-foreground">
                 {profile.description}
               </p>
@@ -108,7 +108,7 @@ export default function About() {
               <div className="rounded-xl border border-border bg-card p-5">
                 <p className="text-xs text-muted-foreground">Education</p>
                 <p className="mt-1 font-semibold">Informatics Engineering</p>
-                <p className="mt-0.5 text-sm text-muted-foreground">Bachelor's Degree</p>
+                <p className="mt-0.5 text-sm text-muted-foreground">Bachelors Degree</p>
               </div>
               <div className="rounded-xl border border-border bg-card p-5">
                 <p className="text-xs text-muted-foreground">Location</p>
@@ -119,13 +119,13 @@ export default function About() {
 
             <div className="flex gap-3">
               <Link href="/contact">
-                <Button className="rounded-full px-6">
+                <Button className="rounded-full px-6 cursor-pointer">
                   Get in Touch
                   <ArrowRight size={16} className="ml-2" />
                 </Button>
               </Link>
               <Link href={profile.github} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="rounded-full px-6">
+                <Button variant="outline" className="rounded-full px-6 cursor-pointer">
                   GitHub
                 </Button>
               </Link>

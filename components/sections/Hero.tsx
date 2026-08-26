@@ -55,13 +55,13 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-3">
               <Link href="/projects">
-                <Button size="lg" className="rounded-full px-6">
+                <Button size="lg" className="rounded-full px-6 cursor-pointer">
                   View Projects
                   <ArrowRight size={16} className="ml-2" />
                 </Button>
               </Link>
               <Link href={profile.resume} target="_blank">
-                <Button size="lg" variant="outline" className="rounded-full px-6">
+                <Button size="lg" variant="outline" className="rounded-full px-6 cursor-pointer">
                   <Download size={16} className="mr-2" />
                   Download CV
                 </Button>

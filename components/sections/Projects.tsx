@@ -146,13 +146,13 @@ export default function Projects() {
                 {/* Actions */}
                 <div className="flex shrink-0 flex-row gap-2 sm:flex-col">
                   <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="sm" className="w-full gap-2">
+                    <Button variant="outline" size="sm" className="w-full gap-2 cursor-pointer">
                       <FaGithub size={14} />
                       GitHub
                     </Button>
                   </Link>
                   <Link href={`/projects/${project.slug}`}>
-                    <Button size="sm" className="w-full gap-2">
+                    <Button size="sm" className="w-full gap-2 cursor-pointer">
                       Details
                       <ArrowRight size={14} />
                     </Button>

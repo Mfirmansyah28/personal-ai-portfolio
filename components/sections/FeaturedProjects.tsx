@@ -87,14 +87,14 @@ export default function FeaturedProjects() {
 
                 <div className="mt-5 flex gap-2">
                   <Link href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1">
-                    <Button variant="outline" size="sm" className="w-full gap-2">
+                    <Button variant="outline" size="sm" className="w-full gap-2 cursor-pointer">
                       <FaGithub size={14} />
                       GitHub
                     </Button>
                   </Link>
                   {project.demo && (
                     <Link href={project.demo} target="_blank" rel="noopener noreferrer" className="flex-1">
-                      <Button size="sm" className="w-full gap-2">
+                      <Button size="sm" className="w-full gap-2 cursor-pointer">
                         Demo
                         <ArrowRight size={14} />
                       </Button>

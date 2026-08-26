@@ -82,7 +82,7 @@ export default function Contact() {
             <div>
               <h3 className="text-lg font-semibold">Get in Touch</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                I'm open to AI Engineering projects, freelance work, enterprise solutions,
+                Im open to AI Engineering projects, freelance work, enterprise solutions,
                 and long-term collaborations. Feel free to reach out.
               </p>
             </div>
@@ -210,7 +210,7 @@ export default function Contact() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full gap-2"
+                  className="w-full gap-2 cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>
